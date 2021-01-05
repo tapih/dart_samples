@@ -1,3 +1,4 @@
+import 'package:dart_algorithm/binary_tree.dart';
 import 'package:dart_algorithm/merge_sort.dart';
 import 'package:dart_algorithm/quick_sort.dart';
 import 'package:dart_algorithm/heap_sort.dart';
@@ -23,5 +24,34 @@ void main() {
     expect(heapSort([1]), [1]);
     expect(heapSort([1, 10, 3, 5, 2], true), [1, 2, 3, 5, 10]);
     expect(heapSort([1, 10, 3, 5, 2], false), [10, 5, 3, 2, 1]);
+  });
+
+  test('binary tree', () {
+    var tree = BinaryTree(
+      15,
+      left: BinaryTreeNode(
+        10,
+        left: BinaryTreeNode(
+          4,
+        ),
+        right: BinaryTreeNode(
+          14,
+          left: BinaryTreeNode(
+            12,
+          ),
+        ),
+      ),
+      right: BinaryTreeNode(
+        19,
+        left: BinaryTreeNode(
+          17,
+        ),
+      ),
+    );
+    expect(tree.bfs(), [15, 10, 19, 4, 14, 17, 12]);
+    expect(tree.dfsPreorder(), [15, 10, 4, 14, 12, 19, 17]);
+    expect(tree.dfsPreorderNonRecursive(), [15, 10, 4, 14, 12, 19, 17]);
+    expect(tree.dfsInorder(), [4, 10, 12, 14, 15, 17, 19]);
+    expect(tree.dfsPostorder(), [4, 12, 14, 10, 17, 19, 15]);
   });
 }
